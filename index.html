@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WAVE — MiyaGi · XCHO · FEDUK</title>
+  <meta name="description" content="Музыкальный каталог MiyaGi & Andy Panda, XCHO и FEDUK с переходами к официальным источникам прослушивания.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="side" id="side">
+      <div class="logo"><span>▮▮▮</span> WAVE</div>
+      <button class="nav-btn active" data-view="home">⌂ Главная</button>
+      <button class="nav-btn" data-view="search">⌕ Поиск</button>
+      <button class="nav-btn" data-view="liked">♥ Избранное</button>
+      <button class="nav-btn" data-view="artist" data-id="miyagi">Miyagi</button>
+      <button class="nav-btn" data-view="artist" data-id="xcho">XCHO</button>
+      <button class="nav-btn" data-view="artist" data-id="feduk">FEDUK</button>
+      <button class="nav-btn" data-view="album" onclick="location.hash='album/umshakalaka'">Умшакалака</button>
+      <button class="nav-btn" data-view="album" onclick="location.hash='album/yamakasi'">YAMAKASI</button>
+      <div class="side-foot">
+        Каталог — метаданные из открытых источников (Wikipedia и др.).
+        Аудиозаписи не загружаются на сайт без разрешения правообладателей.
+        Прослушивание открывается через доступные музыкальные платформы.
+      </div>
+    </aside>
+
+    <div class="main">
+      <div class="topbar">
+        <button class="btn btn-ghost btn-sm" id="menuBtn" style="display:none">☰</button>
+        <div class="search-wrap">
+          <input id="searchInput" type="search" placeholder="Треки, альбомы, артисты…" autocomplete="off" />
+          <button class="search-clear" id="searchClear">✕</button>
+        </div>
+      </div>
+      <div class="content" id="content"></div>
+    </div>
+  </div>
+
+  <div class="player">
+    <div class="p-left">
+      <img id="pCover" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=100&q=80" alt="" />
+      <div style="min-width:0">
+        <div class="t" id="pTitle">Выберите трек</div>
+        <div class="a" id="pArtist">WAVE Pro</div>
+      </div>
+    </div>
+    <div class="p-mid">
+      <div class="p-controls">
+        <button id="btnShuffle" title="Shuffle">🔀</button>
+        <button id="btnPrev" title="Prev">⏮</button>
+        <button class="main-play" id="btnPlay" title="Play">▶</button>
+        <button id="btnNext" title="Next">⏭</button>
+        <button id="btnRepeat" title="Repeat">🔁</button>
+      </div>
+      <div class="p-seek">
+        <span id="tCur">0:00</span>
+        <input type="range" id="seek" min="0" max="100" value="0" />
+        <span id="tTot">0:00</span>
+      </div>
+    </div>
+    <div class="p-right">
+      <div class="p-vol">
+        <span>🔊</span>
+        <input type="range" id="vol" min="0" max="1" step="0.01" value="0.85" />
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio" preload="metadata"></audio>
+  <div class="toast" id="toast"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // show menu on mobile
+    if (matchMedia('(max-width:900px)').matches) {
+      document.getElementById('menuBtn').style.display = 'inline-flex';
+    }
+  </script>
+</body>
+</html>
